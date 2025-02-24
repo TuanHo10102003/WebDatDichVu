@@ -38,7 +38,5 @@ namespace WebTest.Controllers
             Adv item = db.Advs.FirstOrDefault();
             return PartialView(item);
         }
-
-
     }
 }
