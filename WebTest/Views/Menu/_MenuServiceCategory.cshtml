@@ -3,22 +3,26 @@
 {
 <div class="banner">
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center pb-5">
             <div class="col text-center">
                 <div class="section_title new_arrivals_title">
+                    <h2>DANH MỤC DỊCH VỤ</h2>
                 </div>
             </div>
         </div>
         <div class="row">
             @foreach (var item in Model)
             {
-<div class="col-md-4">
-    <div class="banner_item align-items-center" style="background-image: url(@item.Icon)">
-        <div class="banner_category">
-            <a href="/danh-muc-dich-vu/@item.Alias-@item.Id">@item.Title</a>
-        </div>
-    </div>
-</div>  }
+            <div class="col-md-4 mb-4">
+                <div class="banner_item shadow d-flex justify-content-center align-items-center position-relative"
+                     style="background-image: url(@item.Icon); height: 250px; background-size: cover; background-position: center; border-radius: 10px;">
+                    <div class="overlay"></div>
+                    <div class="text-background"></div>
+                    <div class="text text-center p-3 position-absolute text-white fw-bold">
+                        <a href="/danh-muc-dich-vu/@item.Alias-@item.Id" class="text-white ">@item.Title</a>
+                    </div>
+                </div>
+            </div>                }
         </div>
     </div>
 </div>}

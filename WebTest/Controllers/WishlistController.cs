@@ -54,7 +54,7 @@ namespace WebTest.Controllers
         [AllowAnonymous]
         public ActionResult PostDeleteWishlist(int ServiceId)
         {
-            var checkItem = db.Wishlists.FirstOrDefault(x => x.ServiceId == ServiceId && x.UserName == User.Identity.Name);
+            var checkItem = db.Wishlists.FirstOrDefault(x => x.Id  == ServiceId && x.UserName == User.Identity.Name);
             if (checkItem != null)
             {
                 var item = db.Wishlists.Find(checkItem.Id);

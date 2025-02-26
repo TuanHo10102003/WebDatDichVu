@@ -1,4 +1,4 @@
-/* JS Document */
+﻿/* JS Document */
 
 /******************************
 
@@ -216,13 +216,14 @@ jQuery(document).ready(function ($) {
                     var id = $(this).data('id');
                     if (active) {
                         fav.removeClass('active');
-                        active = false;
+                       
                         DeleteWishlist(id);
                     }
                     else {
-                        fav.addClass('active');
-                        active = true;
-                        AddWishlist(id);
+                        
+                        AddWishlist(id, fav);
+                       
+                        
                     }
                 });
             });
@@ -240,7 +241,8 @@ jQuery(document).ready(function ($) {
             }
         });
     }
-    function AddWishlist(id) {
+
+    function AddWishlist(id, item) {
         $.ajax({
             url: '/wishlist/postwishlist',
             type: 'POST',
@@ -248,10 +250,17 @@ jQuery(document).ready(function ($) {
             success: function (res) {
                 if (res.Success == false) {
                     alert(res.Message);
+                    item.removeClass('active');
+                }
+                else {
+                    item.addClass('active');
                 }
             }
         });
     }
+
+
+
     /* 
 
     6. Init Fix Product Border
