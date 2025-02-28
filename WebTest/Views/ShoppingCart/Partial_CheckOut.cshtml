@@ -1,7 +1,9 @@
 ﻿@model WebTest.Models.OrderViewModel
-@{ if (ViewBag.User != null)
+@{ 
+    if (ViewBag.User != null)
     {
-    } }
+    } 
+}
 @using (Ajax.BeginForm("CheckOut", "Shoppingcart", new AjaxOptions
 {
     HttpMethod = "POST",

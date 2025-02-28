@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebTest.Areas.Mediator;
 using WebTest.Models;
 using WebTest.Models.EF;
 
@@ -13,31 +12,25 @@ namespace WebTest.Areas.Admin.Controllers
     [Authorize(Roles = "Admin,Employee")]
     public class NewsController : Controller
     {
-        private readonly GenericMediator<News> _mediator;
-
-        public NewsController()
-        {
-            var dbContext = new ApplicationDbContext();
-            _mediator = new GenericMediator<News>(dbContext);
-        }
-
+        private ApplicationDbContext db = new ApplicationDbContext();
+        // GET: Admin/News
         public ActionResult Index(string Searchtext, int? page)
         {
-            var pageSize = 5; // Số lượng item mỗi trang
-            var pageIndex = page ?? 1; // Trang hiện tại
-
-            var news = _mediator.GetItems(
-                filter: x => string.IsNullOrEmpty(Searchtext) ||
-                             x.Title.Contains(Searchtext) ||
-                             x.Alias.Contains(Searchtext),
-                pageIndex: pageIndex,
-                pageSize: pageSize
-            );
-
+            var pageSize = 10;
+            if (page == null)
+            {
+                page = 1;
+            }
+            IEnumerable<News> items = db.News.OrderByDescending(x => x.Id);
+            if (!string.IsNullOrEmpty(Searchtext))
+            {
+                items = items.Where(x => x.Alias.Contains(Searchtext) || x.Title.Contains(Searchtext));
+            }
+            var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            items = items.ToPagedList(pageIndex, pageSize);
             ViewBag.PageSize = pageSize;
-            ViewBag.Page = pageIndex;
-
-            return View(news);
+            ViewBag.Page = page;
+            return View(items);
         }
 
         public ActionResult Add()
@@ -49,57 +42,86 @@ namespace WebTest.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Add(News model)
         {
-            model.CreatedDate = DateTime.Now;
-            model.ModifiedDate = DateTime.Now;
-            model.Alias = WebTest.Models.Common.Filter.FilterChar(model.Title);
-            model.CategoryId = 3;
-            if (_mediator.AddItem(model))
+            if (ModelState.IsValid)
             {
+                model.CreatedDate = DateTime.Now;
+                model.CategoryId = 6;
+                model.ModifiedDate = DateTime.Now;
+                model.Alias = WebTest.Models.Common.Filter.FilterChar(model.Title);
+                db.News.Add(model);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(model);
         }
 
         public ActionResult Edit(int id)
         {
-            var post = _mediator.GetItemById(id);
-            if (post == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(post);
+            var item = db.News.Find(id);
+            return View(item);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(News model)
         {
-            model.ModifiedDate = DateTime.Now;
-            model.Alias = WebTest.Models.Common.Filter.FilterChar(model.Title);
-
-            if (ModelState.IsValid && _mediator.UpdateItem(model))
+            if (ModelState.IsValid)
             {
+                model.ModifiedDate = DateTime.Now;
+                model.Alias = WebTest.Models.Common.Filter.FilterChar(model.Title);
+                db.News.Attach(model);
+                db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(model);
         }
 
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            var success = _mediator.DeleteItem(id);
-            return Json(new { success });
+            var item = db.News.Find(id);
+            if (item != null)
+            {
+                db.News.Remove(item);
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+
+            return Json(new { success = false });
         }
 
-
+        [HttpPost]
         public ActionResult IsActive(int id)
         {
-            if (_mediator.ToggleActiveStatus(id, out bool isActive))
+            var item = db.News.Find(id);
+            if (item != null)
             {
-                return Json(new { success = true, isActive });
+                item.IsActive = !item.IsActive;
+                db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return Json(new { success = true, isAcive = item.IsActive });
+            }
+
+            return Json(new { success = false });
+        }
+
+        [HttpPost]
+        public ActionResult DeleteAll(string ids)
+        {
+            if (!string.IsNullOrEmpty(ids))
+            {
+                var items = ids.Split(',');
+                if (items != null && items.Any())
+                {
+                    foreach (var item in items)
+                    {
+                        var obj = db.News.Find(Convert.ToInt32(item));
+                        db.News.Remove(obj);
+                        db.SaveChanges();
+                    }
+                }
+                return Json(new { success = true });
             }
             return Json(new { success = false });
         }

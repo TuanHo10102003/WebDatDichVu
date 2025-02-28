@@ -135,6 +135,27 @@ namespace WebTest.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        public ActionResult DeleteAll(string ids)
+        {
+            if (!string.IsNullOrEmpty(ids))
+            {
+                var items = ids.Split(',');
+                if (items != null && items.Any())
+                {
+                    foreach (var item in items)
+                    {
+                        var obj = db.Service.Find(Convert.ToInt32(item));
+                        db.Service.Remove(obj);
+                        db.SaveChanges();
+                    }
+                }
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
+
+
+        [HttpPost]
         public ActionResult IsActive(int id)
         {
             var item = db.Service.Find(id);

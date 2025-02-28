@@ -153,10 +153,8 @@ namespace WebTest.Controllers
                     order.CreatedBy = req.Phone;
                     Random rd = new Random();
                     order.Code = "DH" + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9);
-                    //order.E = req.CustomerName;
                     db.Orders.Add(order);
                     db.SaveChanges();
-                    //send mail cho khachs hang
                     var strDichVu = "";
                     var thanhtien = decimal.Zero;
                     var TongTien = decimal.Zero;
@@ -194,7 +192,7 @@ namespace WebTest.Controllers
                     contentAdmin = contentAdmin.Replace("{{TongTien}}", WebTest.Common.Common.FormatNumber(TongTien, 0));
                     WebTest.Common.Common.SendMail("TuanHo", "Đơn dịch vụ mới #" + order.Code, contentAdmin.ToString(), ConfigurationManager.AppSettings["EmailAdmin"]);
                     cart.ClearCart();
-                    return RedirectToAction("CheckOutSuccess");
+                    return Json(new { Success = true, Code = 1, Url = "/ShoppingCart/CheckOutSuccess" });
                 }
             }
             return Json(code);
