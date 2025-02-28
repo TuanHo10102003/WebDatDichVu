@@ -201,6 +201,9 @@
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductImageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\ServiceCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ServicesController.cs" />
@@ -235,58 +238,6 @@
     <Compile Include="Migrations\202412160747127_Update.Designer.cs">
       <DependentUpon>202412160747127_Update.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202412161342588_Update1.cs" />
-    <Compile Include="Migrations\202412161342588_Update1.Designer.cs">
-      <DependentUpon>202412161342588_Update1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202412161346500_Update2.cs" />
-    <Compile Include="Migrations\202412161346500_Update2.Designer.cs">
-      <DependentUpon>202412161346500_Update2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202412161625010_Update3.cs" />
-    <Compile Include="Migrations\202412161625010_Update3.Designer.cs">
-      <DependentUpon>202412161625010_Update3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202412161849055_Update4.cs" />
-    <Compile Include="Migrations\202412161849055_Update4.Designer.cs">
-      <DependentUpon>202412161849055_Update4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202412161851003_Update5.cs" />
-    <Compile Include="Migrations\202412161851003_Update5.Designer.cs">
-      <DependentUpon>202412161851003_Update5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202412170807489_Update6.cs" />
-    <Compile Include="Migrations\202412170807489_Update6.Designer.cs">
-      <DependentUpon>202412170807489_Update6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202412170924562_Update7.cs" />
-    <Compile Include="Migrations\202412170924562_Update7.Designer.cs">
-      <DependentUpon>202412170924562_Update7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202412171233570_Update8.cs" />
-    <Compile Include="Migrations\202412171233570_Update8.Designer.cs">
-      <DependentUpon>202412171233570_Update8.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202412171344571_Update9.cs" />
-    <Compile Include="Migrations\202412171344571_Update9.Designer.cs">
-      <DependentUpon>202412171344571_Update9.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202412181048311_Update10.cs" />
-    <Compile Include="Migrations\202412181048311_Update10.Designer.cs">
-      <DependentUpon>202412181048311_Update10.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202412231239027_Update11.cs" />
-    <Compile Include="Migrations\202412231239027_Update11.Designer.cs">
-      <DependentUpon>202412231239027_Update11.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202412231414395_Update12.cs" />
-    <Compile Include="Migrations\202412231414395_Update12.Designer.cs">
-      <DependentUpon>202412231414395_Update12.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202412231427270_Update13.cs" />
-    <Compile Include="Migrations\202412231427270_Update13.Designer.cs">
-      <DependentUpon>202412231427270_Update13.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202502281256465_Product.cs" />
     <Compile Include="Migrations\202502281256465_Product.Designer.cs">
       <DependentUpon>202502281256465_Product.cs</DependentUpon>
@@ -302,6 +253,14 @@
     <Compile Include="Migrations\202502281309101_ReviewHomePage.cs" />
     <Compile Include="Migrations\202502281309101_ReviewHomePage.Designer.cs">
       <DependentUpon>202502281309101_ReviewHomePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202502281354098_UpdateDB.cs" />
+    <Compile Include="Migrations\202502281354098_UpdateDB.Designer.cs">
+      <DependentUpon>202502281354098_UpdateDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202502281426035_Update14.cs" />
+    <Compile Include="Migrations\202502281426035_Update14.Designer.cs">
+      <DependentUpon>202502281426035_Update14.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3588,6 +3547,12 @@
     <Content Include="Areas\Admin\Views\Introduction\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Introduction\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Introduction\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3681,6 +3646,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\ProductImage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -3702,45 +3668,6 @@
     <EmbeddedResource Include="Migrations\202412160747127_Update.resx">
       <DependentUpon>202412160747127_Update.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412161342588_Update1.resx">
-      <DependentUpon>202412161342588_Update1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412161346500_Update2.resx">
-      <DependentUpon>202412161346500_Update2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412161625010_Update3.resx">
-      <DependentUpon>202412161625010_Update3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412161849055_Update4.resx">
-      <DependentUpon>202412161849055_Update4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412161851003_Update5.resx">
-      <DependentUpon>202412161851003_Update5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412170807489_Update6.resx">
-      <DependentUpon>202412170807489_Update6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412170924562_Update7.resx">
-      <DependentUpon>202412170924562_Update7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412171233570_Update8.resx">
-      <DependentUpon>202412171233570_Update8.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412171344571_Update9.resx">
-      <DependentUpon>202412171344571_Update9.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412181048311_Update10.resx">
-      <DependentUpon>202412181048311_Update10.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412231239027_Update11.resx">
-      <DependentUpon>202412231239027_Update11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412231414395_Update12.resx">
-      <DependentUpon>202412231414395_Update12.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202412231427270_Update13.resx">
-      <DependentUpon>202412231427270_Update13.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202502281256465_Product.resx">
       <DependentUpon>202502281256465_Product.cs</DependentUpon>
     </EmbeddedResource>
@@ -3752,6 +3679,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202502281309101_ReviewHomePage.resx">
       <DependentUpon>202502281309101_ReviewHomePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202502281354098_UpdateDB.resx">
+      <DependentUpon>202502281354098_UpdateDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202502281426035_Update14.resx">
+      <DependentUpon>202502281426035_Update14.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

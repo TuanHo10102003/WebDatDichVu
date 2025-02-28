@@ -3,16 +3,14 @@ namespace WebTest.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Update2 : DbMigration
+    public partial class Update14 : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.tb_Adv", "CategoryId", c => c.Int(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.tb_Adv", "CategoryId");
         }
     }
 }

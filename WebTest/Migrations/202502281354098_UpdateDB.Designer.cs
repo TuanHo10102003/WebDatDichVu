@@ -7,13 +7,13 @@ namespace WebTest.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Update5 : IMigrationMetadata
+    public sealed partial class UpdateDB : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Update5));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateDB));
         
         string IMigrationMetadata.Id
         {
-            get { return "202412161851003_Update5"; }
+            get { return "202502281354098_UpdateDB"; }
         }
         
         string IMigrationMetadata.Source
