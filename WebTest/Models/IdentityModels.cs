@@ -40,6 +40,11 @@ namespace WebTest.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Subscribe> Subscribes { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<ReviewHomePage> ReviewHomePages { get; set; }
+
 
 
         public static ApplicationDbContext Create()
