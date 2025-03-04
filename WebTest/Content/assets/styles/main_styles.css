@@ -1662,6 +1662,106 @@ section
 	background: #FE7C7F;
 }
 
+
+/*********************************
+11. Reviews
+*********************************/
+
+/* ✅ Khung xanh chứa toàn bộ tiêu đề & slider */
+.bg.section-bg {
+	background-color: #99CCFF; /* Màu xanh */
+	padding: 50px 20px 70px; /* Đẩy chữ lên trên và có khoảng cách dưới */
+	border-radius: 15px; /* Bo góc mềm mại */
+	text-align: center; /* Căn giữa nội dung */
+	color: white; /* Màu chữ trắng */
+}
+
+/* ✅ Tiêu đề căn giữa và đẩy lên trên */
+.section-title-main {
+	color: white !important; /* Màu chữ trắng */
+	font-size: 30px; /* Chữ lớn hơn */
+	font-weight: bold; /* Chữ đậm */
+	text-transform: uppercase; /* Viết hoa */
+	margin-bottom: auto; /* Tạo khoảng cách nhiều hơn giữa tiêu đề & slider */
+}
+
+/* ✅ Tăng kích thước slider & hình ảnh */
+.slider-wrapper {
+	max-width: 1100px; /* Cho slider rộng hơn */
+	margin: auto; /* Căn giữa slider */
+	overflow: hidden;
+	padding-bottom: 40px;
+}
+
+/* ✅ Định dạng hình ảnh để hiển thị lớn hơn */
+.slider .img {
+	width: calc(100% / 3 - 20px); /* Hiển thị đúng 3 ảnh/lượt và có khoảng cách */
+	max-width: 400px; /* Kích thước tối đa lớn hơn */
+	padding: 30px; /* Khoảng cách giữa các ảnh */
+	transition: transform 0.3s ease-in-out;
+}
+
+	.slider .img img {
+		width: 100%;
+		height: 100%; /* Tăng chiều cao ảnh */
+		object-fit: cover;
+		border-radius: 10px; /* Bo góc ảnh */
+	}
+
+	/* ✅ Hiệu ứng phóng to khi hover */
+	.slider .img:hover {
+		transform: scale(1.1);
+	}
+
+/* ✅ Định dạng nút điều hướng */
+.flickity-prev-next-button {
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+}
+
+	.flickity-prev-next-button:hover {
+		background: rgba(0, 0, 0, 0.8);
+	}
+/* ✅ Định dạng tiêu đề trên điện thoại */
+@media (max-width: 768px) {
+	.section-title-main {
+		font-size: 24px; /* Giảm kích thước chữ */
+		margin-bottom: 20px; /* Giảm khoảng cách dưới */
+		padding: 10px;
+	}
+	/* ✅ Chỉnh kích thước slider trên mobile */
+	.slider-wrapper {
+		max-width: 100%; /* Cho slider full màn hình */
+		padding-bottom: 20px; /* Giảm khoảng cách để tránh bị mất page dots */
+	}
+	/* ✅ Hiển thị chỉ 1 ảnh/lượt trên mobile */
+	.slider .img {
+		width: 80%; /* Hiển thị 1 ảnh to rõ ràng */
+		max-width: 250px; /* Giữ ảnh không quá to */
+		padding: 10px;
+	}
+
+		.slider .img img {
+			border-radius: 8px; /* Giữ bo góc mềm mại */
+		}
+}
+
+/* ✅ Định dạng chung */
+.slider-wrapper {
+	overflow: hidden;
+}
+
+/* ✅ Định dạng page dots trên mobile */
+@media (max-width: 768px) {
+	.flickity-page-dots {
+		bottom: 10px; /* Giữ page dots không bị khuất */
+	}
+}
+
+
+
 /*********************************
 11. Footer
 *********************************/

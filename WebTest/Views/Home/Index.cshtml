@@ -1,6 +1,11 @@
 ﻿@{ ViewBag.Title = "Trung tâm sửa chữa thiết bị điện tử";
     ViewBag.SeoDescription = "Trung tâm sửa chữa thiết bị điện tử"; }
 <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/main_styles.css">
+
+<!-- Flickity CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.2/flickity.min.css">
+<!-- Flickity JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.2/flickity.pkgd.min.js"></script>
 <!-- Slider -->
 <!-- Banner -->
 
@@ -99,6 +104,86 @@
             </div>
         </div>
     </div>*@
+
+<!-- Đánh giá -->
+<section class="section show-for-small" id="section_295797182" style="padding-top: 50px">
+    <div class="bg section-bg fill bg-fill bg-loaded bg-loaded">
+        <!-- Đặt nền xanh tại đây -->
+        <div class="section-content relative">
+            <!-- Tiêu đề cách đều trong khung xanh -->
+            <div class="container section-title-container">
+                <h2 class="section-title section-title-center">
+                    <b></b>
+                    <span class="section-title-main">KHÁCH HÀNG ĐÁNH GIÁ GÌ VỀ CHÚNG TÔI?</span>
+                    <b></b>
+                </h2>
+            </div>
+
+            <!-- Slider Section -->
+            <div class="slider-wrapper" id="slider-380565268">
+                <div class="slider"
+                     data-flickity-options='{
+                       "cellAlign": "center",
+                       "imagesLoaded": true,
+                       "lazyLoad": 1,
+                       "wrapAround": true,
+                       "autoPlay": 6000,
+                       "pauseAutoPlayOnHover": true,
+                       "prevNextButtons": true,
+                       "contain": true,
+                       "adaptiveHeight": true,
+                       "dragThreshold": 10,
+                       "pageDots": true,
+                       "groupCells": 3
+
+                    }'>
+
+                    <!-- Feedback Images -->
+                    <div class="img has-hover"><div class="img-inner dark"><img src="https://limosa.vn/wp-content/uploads/feedback-4.jpg" alt="feedback limosa"></div></div>
+                    <div class="img has-hover"><div class="img-inner dark"><img src="https://limosa.vn/wp-content/uploads/feedback-3.jpg" alt="feedback limosa"></div></div>
+                    <div class="img has-hover"><div class="img-inner dark"><img src="https://limosa.vn/wp-content/uploads/feedback-2.jpg" alt="feedback limosa"></div></div>
+                    <div class="img has-hover"><div class="img-inner dark"><img src="https://limosa.vn/wp-content/uploads/feedback-1.jpg" alt="feedback limosa"></div></div>
+                    <div class="img has-hover"><div class="img-inner dark"><img src="https://limosa.vn/wp-content/uploads/2023/08/feedback-limosa-03.jpg" alt="feedback limosa"></div></div>
+                    <div class="img has-hover"><div class="img-inner dark"><img src="https://limosa.vn/wp-content/uploads/2023/08/feedback-limosa-02.jpg" alt="feedback limosa"></div></div>
+                    <div class="img has-hover"><div class="img-inner dark"><img src="https://limosa.vn/wp-content/uploads/2023/08/feedback-limosa-01.jpg" alt="feedback limosa"></div></div>
+                    <div class="img has-hover"><div class="img-inner dark"><img src="https://limosa.vn/wp-content/uploads/2023/07/phan-hoi-cua-khach-hang-7.jpg" alt="phản hồi khách hàng"></div></div>
+                    <div class="img has-hover"><div class="img-inner dark"><img src="https://limosa.vn/wp-content/uploads/2023/07/phan-hoi-cua-khach-hang-3.jpg" alt="phản hồi khách hàng"></div></div>
+
+                </div> <!-- End Slider -->
+            </div> <!-- End Slider Wrapper -->
+        </div> <!-- End Section Content -->
+    </div> <!-- End BG Container -->
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Đảm bảo ảnh được tải trước khi Flickity chạy
+        document.querySelectorAll('img[data-lazyloaded]').forEach(img => {
+            img.setAttribute("src", img.getAttribute("data-src"));
+        });
+
+        // Khởi tạo Flickity
+        var slider = document.querySelector('.slider');
+        var flkty = new Flickity(slider, {
+            cellAlign: 'center',
+            contain: true,
+            wrapAround: true,
+            autoPlay: 6000,
+            pauseAutoPlayOnHover: true,
+            prevNextButtons: true,
+            adaptiveHeight: true,
+            dragThreshold: 10,
+            percentPosition: true,
+            groupCells: 3,
+            pageDots: true,
+            groupCells: window.innerWidth < 768 ? 1 : 3
+        });
+        window.addEventListener("resize", function () {
+            flkty.options.groupCells = window.innerWidth < 768 ? 1 : 3;
+            flkty.resize();
+        });
+    });</script>
+
 
 <!-- Blogs -->
 @Html.Action("Partial_News_Home", "News")
