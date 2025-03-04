@@ -7,10 +7,10 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="/admin" class="nav-link">Trang chủ</a>
+                <a href="/admin/Home" class="nav-link">Trang chủ</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="/admin" class="nav-link">@ViewBag.Title</a>
+                <a href="/admin/account" class="nav-link">@ViewBag.Title</a>
             </li>
         </ul>
     }
@@ -46,7 +46,7 @@
                                     <td>@i</td>
                                     <td>@item.UserName</td>
                                     <td>@item.FullName</td>
-                                    <td>@item.Email</td>s
+                                    <td>@item.Email</td>
                                     <td>@item.Phone</td>
                                     <td>
                                         <a href="/admin/account/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>

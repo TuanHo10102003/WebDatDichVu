@@ -159,15 +159,15 @@
 
                 $('body').on('change', '#SelectAll', function () {
                     var checkStatus = this.checked;
-                    var checkbox = $(this).parents('.card-body').find('tr td input:checkbox');
-                    checkbox.each(function () {
-                        this.checked = checkStatus;
-                        if (this.checked) {
-                            checkbox.attr('selected', 'checked');
-                        } else {
-                            checkbox.attr('selected', '');
-                        }
-                    });
+                    $('.cbkItem').prop('checked', checkStatus);
+                });
+
+                $('body').on('change', '.cbkItem', function () {
+                    var allCheckboxes = $('.cbkItem');
+                    var checkAll = $('#SelectAll');
+
+                    var allChecked = allCheckboxes.length === allCheckboxes.filter(":checked").length;
+                    checkAll.prop('checked', allChecked);
                 });
                 $('body').on('click', '.btnDelete', function () {
                     var id = $(this).data("id");
