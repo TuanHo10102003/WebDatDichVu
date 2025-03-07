@@ -42,6 +42,31 @@ namespace WebTest.Controllers
             var items = db.ServiceCategories.ToList();
             return PartialView("_MenuArrivals", items);
         }
+        public ActionResult Home_MenuCategory()
+        {
+            var serviceCategories = db.ServiceCategories
+                .Where(c => c.IsActive == true)
+                .Select(c => new ServiceCategoryModel
+                {
+                    Id = c.Id,
+                    Title = c.Title,
+                    Icon = c.Icon,
+                    Alias = c.Alias,
+                    Services = db.Service
+                        .Where(s => s.ServiceCategoryId == c.Id && s.IsActive == true)
+                        .Select(s => new ServiceModel
+                        {
+                            Id = s.Id,
+                            Title = s.Title,
+                            Alias = s.Alias
+                        }).ToList()
+                }).ToList();
+
+            return PartialView(serviceCategories);
+        }
+
+
+
 
     }
 }

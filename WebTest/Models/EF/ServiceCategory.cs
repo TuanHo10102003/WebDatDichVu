@@ -34,5 +34,6 @@ namespace  WebTest.Models.EF
         public string SeoKeywords { get; set; }
 
         public ICollection<Service> Services { get; set; }
+        public bool IsActive { get; set; }
     }
 }

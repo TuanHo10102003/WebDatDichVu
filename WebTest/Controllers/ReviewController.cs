@@ -10,9 +10,10 @@ using WebTest.Models.EF;
 
 namespace WebTest.Controllers
 {
-    [Authorize]
+   
     public class ReviewController : Controller
     {
+        
         private ApplicationDbContext _db = new ApplicationDbContext();
         // GET: Review
         public ActionResult Index()
@@ -80,6 +81,19 @@ namespace WebTest.Controllers
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
+        }
+
+        public ActionResult ReviewHomePage()
+        {
+            List<ReviewHomePageModels> rv = new List<ReviewHomePageModels>();
+            rv = (from ca in _db.ReviewHomePages
+                       where ca.IsActive == false
+                       select (new ReviewHomePageModels
+                       {
+                           Id = ca.Id,
+                           Img = ca.Image
+                       })).ToList();
+            return PartialView(rv);
         }
     }
 }

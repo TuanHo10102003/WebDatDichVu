@@ -1,0 +1,50 @@
+﻿@model IEnumerable<WebTest.Models.ServiceCategoryModel>
+
+<ul class="custom-list">
+    @foreach (var category in Model)
+    {
+        <li class="menu_item @(category.Services.Any() ? "has-children" : "")">
+            <a href="/danh-muc/@category.Alias">
+                @if (!string.IsNullOrEmpty(category.Icon))
+                {
+                    <i class="@category.Icon"></i>
+                }
+                @category.Title
+                @if (category.Services.Any())
+                {
+                    <i class="fa fa-angle-down"></i>
+                }
+            </a>
+
+            @if (category.Services.Any())
+            {
+                <ul class="menu_selection">
+                    @foreach (var service in category.Services)
+                    {
+                        <li><a href="/dich-vu/@service.Alias">@service.Title</a></li>
+                    }
+                </ul>
+            }
+        </li>
+    }
+</ul>
+<style>
+    .menu_selection {
+        display: none;
+        position: absolute;
+        background: white;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        list-style: none;
+        z-index: 100;
+    }
+
+    .menu_item {
+        position: relative;
+    }
+
+        .menu_item.has-children:hover .menu_selection {
+            display: block;
+        }
+
+</style>
